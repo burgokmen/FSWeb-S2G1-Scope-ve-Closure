@@ -168,23 +168,27 @@ function skorTabelasi(periyotSkoru, takimSkoru, num) {
   let konukTakimSkor = 0;
   for (let i = 0; i < num; i++) {
     const periyotSkr = periyotSkoru(takimSkoru);
-    macStr[i] = `${i + 1}. Periyot : Ev Sahibi ${
-      periyotSkr["EvSahibi"]
-    } - Konuk Takım ${periyotSkr["KonukTakim"]}`;
+    macStr[i] = `${i + 1}. Periyot : Ev Sahibi ${periyotSkr["EvSahibi"]} - Konuk Takım ${periyotSkr["KonukTakim"]}`;
     evSahibiSkor += periyotSkr["EvSahibi"];
     konukTakimSkor += periyotSkr["KonukTakim"];
-    macStr[
-      num
-    ] = `Maç Sonucu: Ev Sahibi ${evSahibiSkor} - Konuk Takım ${konukTakimSkor}`;
+    macStr[num] = `Maç Sonucu: Ev Sahibi ${evSahibiSkor} - Konuk Takım ${konukTakimSkor}`;
   }
-  return macStr;
+  if (evSahibiSkor !== konukTakimSkor) {
+    return macStr;
+  } else {
+    do {
+      let uzatmaSa = 1;
+      const periyotSkr = periyotSkoru(takimSkoru);
+      macStr[num] = `${uzatmaSa}. Uzatma : Ev Sahibi ${periyotSkr["EvSahibi"]} - Konuk Takım ${periyotSkr["KonukTakim"]}`;
+      evSahibiSkor += periyotSkr["EvSahibi"];
+      konukTakimSkor += periyotSkr["KonukTakim"];
+      macStr[num + 1] = `Maç Sonucu: Ev Sahibi ${evSahibiSkor} - Konuk Takım ${konukTakimSkor}`;
+      uzatmaSa++;
+      num++;
+    } while (evSahibiSkor == konukTakimSkor);
+    return macStr;
+  }
 }
-
-/* if (evSahibiSkor == konukTakimSkor) {
-  periyotSkoru(takimSkoru);
-  macStr[num] = `${}. Periyot : Ev Sahibi ${periyotSkr.EvSahibi} - Konuk Takım ${periyotSkr.KonukTakim}`;
-}
-*/
 
 /* Aşağıdaki satırları lütfen değiştirmeyiniz*/
 function sa() {
