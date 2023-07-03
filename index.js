@@ -166,10 +166,8 @@ function skorTabelasi(periyotSkoru, takimSkoru, num) {
   const macStr = [];
   let evSahibiSkor = 0;
   let konukTakimSkor = 0;
-  periyotSkr = {};
   for (let i = 0; i < num; i++) {
-    periyotSkoru(takimSkoru);
-    debugger;
+    const periyotSkr = periyotSkoru(takimSkoru);
     macStr[i] = `${i + 1}. Periyot : Ev Sahibi ${
       periyotSkr["EvSahibi"]
     } - Konuk Takım ${periyotSkr["KonukTakim"]}`;
